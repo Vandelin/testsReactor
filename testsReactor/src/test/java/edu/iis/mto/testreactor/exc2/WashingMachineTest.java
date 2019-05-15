@@ -60,6 +60,13 @@ public class WashingMachineTest {
         verify(dirtDetector).detectDirtDegree(anyObject());
     }
 
+    @Test
+    public void givenHeavyLaundryWhenStartThenLaundryStatusOverweight(){
+        laundryBatch = laundryBatch.builder().withType(Material.WOOL).withWeightKg(20).build();
+        LaundryStatus laundryStatus = washingMachine.start(laundryBatch, programConfiguration);
+        assertTrue(laundryStatus.getErrorCode() == ErrorCode.TOO_HEAVY);
+    }
+
 
 
 
