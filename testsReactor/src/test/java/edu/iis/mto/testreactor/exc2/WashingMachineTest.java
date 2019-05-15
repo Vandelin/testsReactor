@@ -54,6 +54,12 @@ public class WashingMachineTest {
         verify(dirtDetector, times(1)).detectDirtDegree(anyObject());
     }
 
+    @Test
+    public void givenProgramAnyOtherThanAutodetectWhenStartThenDetectDirtDegreeIsntCalled(){
+        washingMachine.start(laundryBatch, programConfiguration);
+        verify(dirtDetector).detectDirtDegree(anyObject());
+    }
+
 
 
 
