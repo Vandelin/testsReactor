@@ -74,6 +74,13 @@ public class WashingMachineTest {
         assertThat(laundryStatus.getResult(), is(Result.SUCCESS));
     }
 
+    @Test
+    public void givenHighDirtDegreeAndAutoDetectWhenStartThenProgramIsLong(){
+        when(dirtDetector.detectDirtDegree(anyObject())).thenReturn(new Percentage(50));
+        LaundryStatus laundryStatus = washingMachine.start(laundryBatch, programConfiguration);
+        assertThat(laundryStatus.getRunnedProgram().getTimeInMinutes(), is(Program.LONG.getTimeInMinutes()));
+    }
+
 
 
 
