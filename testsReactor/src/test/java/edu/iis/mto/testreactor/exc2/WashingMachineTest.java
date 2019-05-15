@@ -67,6 +67,13 @@ public class WashingMachineTest {
         assertTrue(laundryStatus.getErrorCode() == ErrorCode.TOO_HEAVY);
     }
 
+    @Test
+    public void givenRightLaundryWhenStartThenLaundryStatusSuccess(){
+        laundryBatch = laundryBatch.builder().withType(Material.WOOL).withWeightKg(1).build();
+        LaundryStatus laundryStatus = washingMachine.start(laundryBatch, programConfiguration);
+        assertThat(laundryStatus.getResult(), is(Result.SUCCESS));
+    }
+
 
 
 
