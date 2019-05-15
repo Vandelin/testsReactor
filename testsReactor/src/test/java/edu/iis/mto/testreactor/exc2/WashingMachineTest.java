@@ -48,6 +48,12 @@ public class WashingMachineTest {
         assertFalse(laundryStatus.getErrorCode() == ErrorCode.TOO_HEAVY);
     }
 
+    @Test
+    public void givenProgramAutodetectWhenStartThenDetectDirtDegreeCalledOnce(){
+        washingMachine.start(laundryBatch, programConfiguration);
+        verify(dirtDetector, times(1)).detectDirtDegree(anyObject());
+    }
+
 
 
 
